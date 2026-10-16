@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Control de Tareas</title>
+    <!-- CSS de Bootstrap 5 para dar formato visual inmediato -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <!-- Encabezado -->
+        <header class="pb-3 mb-4 border-bottom">
+            <h1 class="fw-bold text-primary">Sistema de Control de Tareas</h1>
+            <p class="text-muted mb-0">Esta plataforma permitirá administrar y organizar las tareas del proyecto.</p>
+        </header>
+
+        <div class="row g-4">
+            <!-- Formulario para crear tarea -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Nueva Tarea</h5>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="titulo" class="form-label">Título</label>
+                                <input type="text" class="form-control" id="titulo" placeholder="Ej: Diseñar la base de datos" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="descripcion" rows="3" placeholder="Detalles de la tarea..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="prioridad" class="form-label">Prioridad</label>
+                                <select class="form-select" id="prioridad">
+                                    <option value="baja">Baja</option>
+                                    <option value="media" selected>Media</option>
+                                    <option value="alta">Alta</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Guardar Tarea</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de tareas -->
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Tareas Pendientes</h5>
+                        <div class="list-group">
+                            <!-- Tarea de ejemplo 1 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <h6 class="mb-1 text-decoration-line-through text-muted">Configurar entorno de desarrollo</h6>
+                                    <small class="text-muted">Instalación de Django y estructura inicial</small>
+                                </div>
+                                <span class="badge bg-secondary">Completada</span>
+                            </div>
+                            <!-- Tarea de ejemplo 2 -->
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <h6 class="mb-1">Crear modelo de Tareas en Django</h6>
+                                    <small class="text-muted">Definir campos de título, descripción y estado</small>
+                                </div>
+                                <div>
+                                    <span class="badge bg-danger me-2">Alta</span>
+                                    <button class="btn btn-sm btn-outline-success">Completar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
